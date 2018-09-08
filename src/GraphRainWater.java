@@ -23,23 +23,23 @@ public class GraphRainWater {
             return 0;
 
         PriorityQueue<Cell> queue = new PriorityQueue<>();
-        int m = heights.length;
-        int n = heights[0].length;
-        boolean[][] visited = new boolean[m][n];
+        int row = heights.length;
+        int col = heights[0].length;
+        boolean[][] visited = new boolean[row][col];
 
         // Initially, add all the Cells which are on borders to the queue.
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < row; i++) {
             visited[i][0] = true;
-            visited[i][n - 1] = true;
+            visited[i][col - 1] = true;
             queue.offer(new Cell(i, 0, heights[i][0]));
-            queue.offer(new Cell(i, n - 1, heights[i][n - 1]));
+            queue.offer(new Cell(i, col - 1, heights[i][col - 1]));
         }
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < col; i++) {
             visited[0][i] = true;
-            visited[m - 1][i] = true;
+            visited[row - 1][i] = true;
             queue.offer(new Cell(0, i, heights[0][i]));
-            queue.offer(new Cell(m - 1, i, heights[m - 1][i]));
+            queue.offer(new Cell(row - 1, i, heights[row - 1][i]));
         }
 
         // from the borders, pick the shortest cell visited and check its neighbors:
@@ -50,12 +50,12 @@ public class GraphRainWater {
         while (!queue.isEmpty()) {
             Cell cell = queue.poll();
             for (int[] dir : dirs) {
-                int row = cell.row + dir[0];
-                int col = cell.col + dir[1];
-                if (row >= 0 && row < m && col >= 0 && col < n && !visited[row][col]) {
-                    visited[row][col] = true;
-                    res += Math.max(0, cell.height - heights[row][col]);
-                    queue.offer(new Cell(row, col, Math.max(heights[row][col], cell.height)));
+                int row1= cell.row + dir[0];
+                int col1 = cell.col + dir[1];
+                if (row1 >= 0 && row1 < row && col1 >= 0 && col1 < col && !visited[row1][col1]) {
+                    visited[row1][col1] = true;
+                    res += Math.max(0, cell.height - heights[row1][col1]);
+                    queue.offer(new Cell(row1, col1, Math.max(heights[row1][col1], cell.height)));
                 }
             }
         }
