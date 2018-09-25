@@ -1,3 +1,5 @@
+package dynamicprograming;
+
 public class DPProductionPlan {
     static int[] APlan = {5,2,11,9,10};
     static int[] BPlan = {10,4,6,10,19};
@@ -18,9 +20,9 @@ public class DPProductionPlan {
         BDpTable[1] = BPlan[0] + BPlan[1];
         for(int t=2;t<time;t++){
             ADpTable[t] = Integer.max(ADpTable[t-1]+APlan[t],
-                                        BDpTable[t-2]+APlan[t]);
+                    BDpTable[t-2]+APlan[t]);
             BDpTable[t]= Integer.max(BDpTable[t-1]+BPlan[t],
-                                    ADpTable[t-2]+BPlan[t]);
+                    ADpTable[t-2]+BPlan[t]);
         }
         trackback(ADpTable,BDpTable);
         return Integer.max(ADpTable[time-1],BDpTable[time-1]);
@@ -57,21 +59,22 @@ public class DPProductionPlan {
 
     }
     static String dutch_flag_sort(String balls) {
-       char[] charballs = balls.toCharArray();
-       int start = 0;
-       int mid = 0;
-       int end = charballs.length-1;
-       while (mid<=end){
-           if(charballs[mid] =='R'){
-               swap(charballs,start++,mid++);
-           }
-           else if(charballs[mid]=='G'){
-               mid++;
-           }
-           else if(charballs[mid]=='B'){
-               swap(charballs,mid,end--);
-           }
-       }
-       return new String(charballs);
+        char[] charballs = balls.toCharArray();
+        int start = 0;
+        int mid = 0;
+        int end = charballs.length-1;
+        while (mid<=end){
+            if(charballs[mid] =='R'){
+                swap(charballs,start++,mid++);
+            }
+            else if(charballs[mid]=='G'){
+                mid++;
+            }
+            else if(charballs[mid]=='B'){
+                swap(charballs,mid,end--);
+            }
+        }
+        return new String(charballs);
     }
 }
+

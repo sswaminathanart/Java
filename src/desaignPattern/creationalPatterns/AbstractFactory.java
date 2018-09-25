@@ -1,3 +1,5 @@
+package desaignPattern.creationalPatterns;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,21 +44,21 @@ class ChromBook implements Laptop {
 interface Browser{
     public void createBrowser();
 }
-class InternetExplore implements Browser{
+class InternetExplore implements Browser {
 
     @Override
     public void createBrowser() {
         System.out.println("Internet Explore");
     }
 }
-class Safari implements Browser{
+class Safari implements Browser {
 
     @Override
     public void createBrowser() {
         System.out.println("Apple Safari");
     }
 }
-class GoogleChrome implements Browser{
+class GoogleChrome implements Browser {
 
     @Override
     public void createBrowser() {
@@ -94,7 +96,7 @@ abstract class MyAbstractFactory
 
 }
 
-class LabtopBrowserFactory extends MyAbstractFactory{
+class LabtopBrowserFactory extends MyAbstractFactory {
     String type;
     Laptop l;
     Browser b;
@@ -111,8 +113,8 @@ class LabtopBrowserFactory extends MyAbstractFactory{
     }
     @Override
     public void createLaptopwithBrowser(String type) {
-         l = laptoplookup.get(type);
-         b = browserLookup.get(type);
+        l = laptoplookup.get(type);
+        b = browserLookup.get(type);
 
     }
 }

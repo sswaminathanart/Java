@@ -1,3 +1,5 @@
+package desaignPattern.creationalPatterns;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +18,7 @@ abstract class Pizza {
         System.out.println("Pizza baked at 400 for 20 minutes.");
     }
 }
-class VegPizza extends Pizza{
+class VegPizza extends Pizza {
 
     @Override
     public void addIngredients() {
